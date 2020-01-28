@@ -112,3 +112,48 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+// Step 1
+
+function componentCreator(titleText, dateText, firstPar, secondPar, thirdPar){
+
+  const articles = document.createElement('div');
+  const title = document.createElement('h2');
+  const date = document.createElement('p');
+  const firstPar = document.createElement('p');
+  const secondPar = document.createElement('p');
+  const thirdPar = document.createElement('p');
+  const expandBtn = document.createElement('span');
+
+  title.textContent = titleText;
+  date.textContent = dateText;
+  firstParagraph.textContent = firstPar;
+  secondParagraph.textContent = secondPar;
+  thirdParagraph.textContent = thirdPar;
+
+  articles.classList.add('article');
+  date.classList.add('date');
+  expandBtn.classList.add('expandButton');
+
+  article.appendChild(title);
+  article.appendChild(date);
+  article.appendChild(expandBtn);
+
+  date.appendChild(firstPar);
+  date.appendChild(secondPar);
+  date.appendChild(thirdPar);
+
+  expandBtn.addEventListener('click', (e) => {
+      console.log('clicked!');
+  });
+
+  return article;
+}
+
+let parentComponent = document.querySelector('.article');
+
+componentData.forEach( data => {
+  const newPanel = componentCreator(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph);
+  parentComponent.appendChild(newPanel);
+}) 
+
