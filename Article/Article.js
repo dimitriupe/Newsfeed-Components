@@ -115,45 +115,69 @@ const data = [
 
 // Step 1
 
-function componentCreator(titleText, dateText, firstPar, secondPar, thirdPar){
+function componentCreator(title, date, firstParagraph, secondParagraph, thirdParagraph){
 
-  const articles = document.createElement('div');
-  const title = document.createElement('h2');
-  const date = document.createElement('p');
+  const article1 = document.createElement('div');
+  const titleText = document.createElement('h2');
+  const dateText = document.createElement('p');
   const firstPar = document.createElement('p');
   const secondPar = document.createElement('p');
   const thirdPar = document.createElement('p');
   const expandBtn = document.createElement('span');
 
-  title.textContent = titleText;
-  date.textContent = dateText;
-  firstParagraph.textContent = firstPar;
-  secondParagraph.textContent = secondPar;
-  thirdParagraph.textContent = thirdPar;
+  article1.appendChild(titleText);
+  article1.appendChild(dateText);
+  article1.appendChild(firstPar);
+  article1.appendChild(secondPar);
+  article1.appendChild(thirdPar);
+  article1.appendChild(expandBtn);
 
-  articles.classList.add('article');
-  date.classList.add('date');
+  titleText.textContent = title;
+  dateText.textContent = date;
+  firstPar.textContent = firstParagraph;
+  secondPar.textContent = secondParagraph;
+  thirdPar.textContent = thirdParagraph;
+  expandBtn.textContent = 'Further info';
+
+  article1.classList.add('article');
+  dateText.classList.add('date');
   expandBtn.classList.add('expandButton');
 
-  article.appendChild(title);
-  article.appendChild(date);
-  article.appendChild(expandBtn);
+// Step 2
 
-  date.appendChild(firstPar);
-  date.appendChild(secondPar);
-  date.appendChild(thirdPar);
-
-  expandBtn.addEventListener('click', (e) => {
-      console.log('clicked!');
+  expandBtn.addEventListener('click', () => {
+      article1.classList.toggle('article-open');
+      expandBtn.textContent = 'Less info';
   });
 
-  return article;
+// Step 3
+
+  return article1;
 }
 
-let parentComponent = document.querySelector('.article');
+// Step 5
 
-componentData.forEach( data => {
-  const newPanel = componentCreator(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph);
-  parentComponent.appendChild(newPanel);
+data.push({
+    title: 'Professional Software Development in 2019',
+    date: 'Jan 1st, 2019',
+    firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+    secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+});
+
+// Step 4
+
+let parentComponent = document.querySelector('.articles');
+
+data.forEach( data => {
+  parentComponent.appendChild(componentCreator(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph));
 }) 
-
